@@ -37,6 +37,8 @@ app.post("/webhook", (req, res) => { //i want some
 
     console.log(JSON.stringify(body_param, null, 2));
 
+    console.log(body_param.object)
+
     if (body_param.object) {
         console.log("inside body param");
         if (body_param.entry &&
@@ -57,7 +59,7 @@ app.post("/webhook", (req, res) => { //i want some
                 url: "https://graph.facebook.com/v13.0/" + phon_no_id + "/messages?access_token=" + token,
                 data: {
                     messaging_product: "whatsapp",
-                    to: from,
+                    to: to,
                     text: {
                         body: "Hi.. I'm Prasath, your message is " + msg_body
                     }
