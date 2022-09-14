@@ -13,7 +13,7 @@ app.listen(process.env.PORT, () => {
 });
 
 //to verify the callback url from dashboard side - cloud api side
-app.get("/webhook", (req, res) => {
+app.get("/webhook", async (req, res) => {
     console.log('entrou aqui')
     let mode = req.query["hub.mode"];
     let challange = req.query["hub.challenge"];
@@ -32,13 +32,12 @@ app.get("/webhook", (req, res) => {
 
 });
 
-app.post("/webhook", (req, res) => { //i want some 
+app.post("/webhook", async (req, res) => { //i want some 
 
     let body_param = req.body;
 
     console.log(JSON.stringify(body_param, null, 2));
 
-    console.log(body_param.to)
     let too = body_param.to
     console.log(body_param.object, 'body object')
     console.log(body_param.entry, 'entry')
@@ -59,22 +58,30 @@ app.post("/webhook", (req, res) => { //i want some
             console.log("from " + from);
             console.log("boady param " + msg_body);
 
-            axios({
-                method: "POST",
-                url: "https://graph.facebook.com/v14.0/" + phon_no_id + "/messages?access_token=" + token,
-                data: {
-                    messaging_product: "whatsapp",
-                    to: too,
-                    text: {
-                        body: "Hi.. I'm Prasath, your message is " + msg_body
+            try {
+                await axios({
+                    method: "POST",
+                    url: `https://graph.facebook.com/v14.0/${phon_no_id}/messages?access_token=${token}`,
+                    data: {
+                        messaging_product: "whatsapp",
+                        recipient_type: "individual",
+                        to: from,
+                        text: {
+                            body: "Hi.. I'm Prasath, your message is " + msg_body
+                        }
+                    },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     }
-                },
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                }
 
-            });
+                });
+            } catch (e) {
+                console.error(e);
+                console.error(e.response.data);
+                console.error(e.response.status);
+                console.error(e.response.headers);
+            }
 
             res.sendStatus(200);
         } else {
