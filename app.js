@@ -238,9 +238,7 @@ async function sendMessageButton(number) {
 
         sendMessage(response)
     }).catch(function (e) {
-        console.error(e.response.data);
-        console.error(e.response.status);
-        console.error(e.response.headers);
+console.log(e.message)
     })
 };
 
