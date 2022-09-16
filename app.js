@@ -38,7 +38,6 @@ app.post("/webhook", async (req, res) => { //i want some
 
     console.log(JSON.stringify(body_param, null, 2));
 
-    let too = body_param.to
     console.log(body_param.object, 'body object')
     console.log(body_param.entry, 'entry')
     if (body_param.object) {
@@ -58,24 +57,27 @@ app.post("/webhook", async (req, res) => { //i want some
             console.log("from " + from);
             console.log("boady param " + msg_body);
 
-            try {
-                await axios({
-                    method: "POST",
-                    url: `https://graph.facebook.com/v14.0/${phon_no_id}/messages?access_token=${token}`,
-                    data: {
-                        messaging_product: "whatsapp",
-                        recipient_type: "individual",
-                        to: from,
-                        text: {
-                            body: "Hi.. I'm Prasath, your message is " + msg_body
-                        }
-                    },
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
+            const data = JSON.stringify({
+                messaging_product: "whatsapp",
+                recipient_type: "individual",
+                to: from,
+                text: {
+                    body: "Hi.. I'm Prasath, your message is " + msg_body
+                }
+            })
 
-                });
+            const config = {
+                method: "POST",
+                url: `https://graph.facebook.com/v14.0/${phon_no_id}/messages?access_token=${token}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                data: data
+            }
+
+            try {
+                await axios(config);
             } catch (e) {
                 console.error(e);
                 console.error(e.response.data);
@@ -134,8 +136,8 @@ async function sendMessage(number) {
 
 
 
-let number = 5511961158907
-//sendMessage(number);
+let number = 5511954406674
+sendMessage(number);
 
 app.get("/", (req, res) => {
     res.status(200).send("hello this is webhook setup");
