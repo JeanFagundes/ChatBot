@@ -25,7 +25,7 @@ app.get("/webhook", async (req, res) => {
         if (mode === "subscribe" && token === mytoken) {
             res.status(200).send(challange, 'hello');
         } else {
-            res.status(403);
+            res.status(403).send('Acess denied');
         }
 
     }
@@ -53,11 +53,15 @@ app.post("/webhook", async (req, res) => { //i want some
             let from = body_param.entry[0].changes[0].value.messages[0].from;
             let msg_body = "sem corpo"
 
+            try {
 
-            if (!body_param.entry[0].changes[0].value.messages[0].text.body) {
-                msg_body = "sem corpo";
-            } else {
-                msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
+                if (!body_param.entry[0].changes[0].value.messages[0].text.body) {
+                    msg_body = "sem corpo";
+                } else {
+                    msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
+                }
+            } catch (e) {
+                console.log(e)
             }
 
 
