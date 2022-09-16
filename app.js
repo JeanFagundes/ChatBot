@@ -22,13 +22,14 @@ app.get("/webhook", async (req, res) => {
 
     if (mode && token) {
 
+        console.log('entrou no if do get /webhook')
+
         if (mode === "subscribe" && token === mytoken) {
             console.log('status 200 do get /webhook')
-            res.status(200).send(challange, 'hello');
+            return res.status(200).send(challange, 'hello');
         } else {
             console.log('status 403 do get /webhook')
-
-            res.status(403).send('Acess denied');
+            return res.status(403).send('Acess denied');
         }
 
     }
@@ -54,13 +55,9 @@ app.post("/webhook", async (req, res) => { //i want some
             console.log('entrou no segundo if')
             let phon_no_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_param.entry[0].changes[0].value.messages[0].from;
+            let msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
 
-            try {
-                let msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
 
-            } catch (e) {
-                console.log(e)
-            }
 
             console.log("phone number " + phon_no_id);
             console.log("from " + from);
@@ -88,15 +85,14 @@ app.post("/webhook", async (req, res) => { //i want some
             try {
                 await axios(config);
             } catch (e) {
-                console.error(e);
                 console.error(e.response.data);
                 console.error(e.response.status);
                 console.error(e.response.headers);
             }
 
-            res.sendStatus(200);
+            return res.sendStatus(200);
         } else {
-            res.sendStatus(404);
+            return res.sendStatus(404);
         }
 
     }
