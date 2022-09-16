@@ -89,14 +89,8 @@ app.post("/webhook", async (req, res) => { //i want some
                 data: data
             }
 
-            try {
                 await axios(config);
-            } catch (e) {
-                console.error(e.response.data);
-                console.error(e.response.status);
-                console.error(e.response.headers);
-            }
-
+     
             return res.sendStatus(200);
         } else if (body_param.entry &&
             body_param.entry[0].changes &&
