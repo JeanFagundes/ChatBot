@@ -54,10 +54,10 @@ app.post("/webhook", async (req, res) => { //i want some
             let msg_body
 
 
-            if (body_param.entry[0].changes[0].value.messages[0].text.body) {
-                msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
-            } else {
+            if (!body_param.entry[0].changes[0].value.messages[0].text.body) {
                 msg_body = "sem corpo";
+            } else {
+                msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
             }
 
 
