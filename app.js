@@ -42,8 +42,8 @@ app.post("/webhook", async (req, res) => { //i want some
 
     console.log(JSON.stringify(body_param, null, 2));
 
-    console.log(body_param.object, 'body object')
-    console.log(body_param.entry, 'entry')
+    //   console.log(body_param.object, 'body object')
+    // console.log(body_param.entry, 'entry')
     if (body_param.object) {
         console.log("inside body param");
         if (body_param.entry &&
