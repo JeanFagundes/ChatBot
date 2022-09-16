@@ -1,0 +1,47 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "106267015566642",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550705204",
+              "phone_number_id": "103734019157955"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Jean"
+                },
+                "wa_id": "5511954406674"
+              }
+            ],
+            "messages": [
+              {
+                "context": {
+                  "from": "15550705204",
+                  "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABEYEkZGNTMxMTQ4MkQ3NjYyNTIzQgA="
+                },
+                "from": "5511954406674",
+                "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABIYIDk5RjgwMTE1MjIzMkRCQ0FCMDQ2RTEzNzc2OEVFQkJBAA==",
+                "timestamp": "1663352683",
+                "type": "interactive",
+                "interactive": {
+                  "type": "button_reply",
+                  "button_reply": {
+                    "id": "2",
+                    "title": "Não"
+                  }
+                }
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}
