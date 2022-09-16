@@ -51,7 +51,7 @@ app.post("/webhook", async (req, res) => { //i want some
             console.log('entrou no segundo if')
             let phon_no_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_param.entry[0].changes[0].value.messages[0].from;
-            let msg_body
+            let msg_body = "sem corpo"
 
 
             if (!body_param.entry[0].changes[0].value.messages[0].text.body) {
@@ -196,4 +196,4 @@ async function sendMessageButton(number) {
     }
 };
 
-//sendMessageButton(number);
+sendMessageButton(number);
