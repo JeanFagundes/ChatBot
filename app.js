@@ -23,8 +23,11 @@ app.get("/webhook", async (req, res) => {
     if (mode && token) {
 
         if (mode === "subscribe" && token === mytoken) {
+            console.log('status 200 do get /webhook')
             res.status(200).send(challange, 'hello');
         } else {
+            console.log('status 403 do get /webhook')
+
             res.status(403).send('Acess denied');
         }
 
@@ -51,19 +54,13 @@ app.post("/webhook", async (req, res) => { //i want some
             console.log('entrou no segundo if')
             let phon_no_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_param.entry[0].changes[0].value.messages[0].from;
-            let msg_body = "sem corpo"
 
             try {
+                let msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
 
-                if (!body_param.entry[0].changes[0].value.messages[0].text.body) {
-                    msg_body = "sem corpo";
-                } else {
-                    msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
-                }
             } catch (e) {
                 console.log(e)
             }
-
 
             console.log("phone number " + phon_no_id);
             console.log("from " + from);
@@ -108,14 +105,6 @@ app.post("/webhook", async (req, res) => { //i want some
 
 //jeito certo de enviar mensagem
 async function sendMessage(number) {
-    let obj = {
-        to: 5511961158907,
-        type: "text",
-        recipient_type: "individual",
-        text: {
-            body: "welcome"
-        }
-    }
 
     try {
         let resp = await axios({
@@ -177,15 +166,16 @@ async function sendMessageButton(number) {
                                 "type": "reply",
                                 "reply": {
                                     "id": "1",
-                                    "title": "Sim"
-                                }
+                                    "title": "Sim",
+                                },
                             },
                             {
                                 "type": "reply",
                                 "reply": {
                                     "id": "2",
                                     "title": "Não"
-                                }
+                                },
+
                             }
                         ],
                     },
@@ -200,4 +190,4 @@ async function sendMessageButton(number) {
     }
 };
 
-sendMessageButton(number);
+//sendMessageButton(number);
