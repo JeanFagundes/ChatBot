@@ -57,9 +57,9 @@ app.post("/webhook", async (req, res) => { //i want some
             let from = body_param.entry[0].changes[0].value.messages[0].from;
             let msg_body;
 
-            if (!body_param.entry[0].changes[0].value.messages[0]?.text) {
+            if (!body_param.entry[0].changes[0].value.messages[0] ?.text) {
                 msg_body = body_param.entry[0].changes[0].value.messages[0].interactive.button_reply.title
-            } else if (!body_param.entry[0].changes[0].value.messages[0]?.interactive.button_reply.title) {
+            } else if (!body_param.entry[0].changes[0].value.messages[0] ?.interactive.button_reply.title) {
                 msg_body = body_param.entry[0].changes[0].value.messages[0].text.body
             }
             // let msg_body = body_param.entry[0].changes[0].value.messages[0].text.body || body_param.entry[0].changes[0].value.messages[0].interactive.button_reply.title;
@@ -114,38 +114,72 @@ app.post("/webhook", async (req, res) => { //i want some
 });
 
 //jeito certo de enviar mensagem
-async function sendMessage(number) {
+// async function sendMessage(number) {
 
-    try {
-        let resp = await axios({
-            url: `https://graph.facebook.com/v14.0/103734019157955/messages?access_token=${token}`,
-            method: 'post',
-            data: {
-                messaging_product: "whatsapp",
-                recipient_type: "individual",
-                to: number,
-                type: "text",
-                text: {
-                    body: "Augusto é um baitola"
-                }
-            },
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
+//     try {
+//         let resp = await axios({
+//             url: `https://graph.facebook.com/v14.0/103734019157955/messages?access_token=${token}`,
+//             method: 'post',
+//             data: {
+//                 messaging_product: "whatsapp",
+//                 recipient_type: "individual",
+//                 to: number,
+//                 type: "text",
+//                 text: {
+//                     body: "Augusto é um baitola"
+//                 }
+//             },
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         })
+
+//         return resp
+//     } catch (e) {
+
+//         console.error(e);
+//         console.error(e.response.data);
+//         console.error(e.response.status);
+//         console.error(e.response.headers);
+//     }
+// }
+
+async function sendMessage(response) {
+
+
+    var data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "recipient_type": "individual",
+        "to": response.data.contacts[0].input,
+        "context": {
+            "message_id": response.data.messages[0].id
+        },
+        "type": "text",
+        "text": {
+            "preview_url": false,
+            "body": "My Boy"
+        }
+    });
+
+    var config = {
+        method: "POST",
+        url: `https://graph.facebook.com/v14.0/103734019157955/messages?access_token=${token}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        data: data
+    };
+
+    axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
         })
-
-        return resp
-    } catch (e) {
-
-        console.error(e);
-        console.error(e.response.data);
-        console.error(e.response.status);
-        console.error(e.response.headers);
-    }
+        .catch(function (error) {
+            console.log(error);
+        });
 }
-
-
 
 const number = 5511954406674
 //sendMessage(number);
@@ -156,48 +190,58 @@ app.get("/", (req, res) => {
 
 
 async function sendMessageButton(number) {
-    try {
-        console.log('entrou')
-        let resp = await axios({
-            url: `https://graph.facebook.com/v14.0/103734019157955/messages?access_token=${token}`,
-            method: 'post',
-            data: {
-                "messaging_product": "whatsapp",
-                "recipient_type": "individual",
-                "to": number,
-                "type": "interactive",
-                "interactive": {
-                    "type": "button",
-                    "body": {
-                        "text": "Ja devolveu a maquina ?"
-                    },
-                    "action": {
-                        "buttons": [{
-                                "type": "reply",
-                                "reply": {
-                                    "id": "1",
-                                    "title": "Sim",
-                                },
-                            },
-                            {
-                                "type": "reply",
-                                "reply": {
-                                    "id": "2",
-                                    "title": "Não"
-                                },
 
-                            }
-                        ],
-                    },
-                },
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "recipient_type": "individual",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "button",
+            "body": {
+                "text": "Ja devolveu a maquina ?"
             },
-        })
-    } catch (e) {
+            "action": {
+                "buttons": [{
+                        "type": "reply",
+                        "reply": {
+                            "id": "1",
+                            "title": "Sim",
+                        },
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "2",
+                            "title": "Não"
+                        },
+                    }
+                ],
+            },
+        },
+    })
 
+    const config = {
+        method: "POST",
+        url: `https://graph.facebook.com/v14.0/103734019157955/messages?access_token=${token}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        data: data
+    }
+
+    console.log('entrou')
+
+    let resp = await axios(config).then(function (response) {
+        console.log(JSON.stringify(response))
+
+        sendMessage(response)
+    }).catch(function (e) {
         console.error(e.response.data);
         console.error(e.response.status);
         console.error(e.response.headers);
-    }
+    })
 };
 
-//sendMessageButton(number);
+sendMessageButton(number);
