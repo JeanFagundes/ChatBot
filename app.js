@@ -136,9 +136,56 @@ async function sendMessage(number) {
 
 
 
-let number = 5511954406674
-sendMessage(number);
+const number = 5511954406674
+//sendMessage(number);
 
 app.get("/", (req, res) => {
     res.status(200).send("hello this is webhook setup");
 });
+
+
+async function sendMessageButton(number) {
+    try {
+        console.log('entrou')
+        let resp = await axios({
+            url: `https://graph.facebook.com/v14.0/103734019157955/messages?access_token=${token}`,
+            method: 'post',
+            data: {
+                "messaging_product": "whatsapp",
+                "recipient_type": "individual",
+                "to": number,
+                "type": "interactive",
+                "interactive": {
+                    "type": "button",
+                    "body": {
+                        "text": "Ja devolveu a maquina ?"
+                    },
+                    "action": {
+                        "buttons": [{
+                                "type": "reply",
+                                "reply": {
+                                    "id": "1",
+                                    "title": "Sim"
+                                }
+                            },
+                            {
+                                "type": "reply",
+                                "reply": {
+                                    "id": "2",
+                                    "title": "Não"
+                                }
+                            }
+                        ],
+                    },
+                },
+            },
+        })
+    } catch (e) {
+
+        console.error(e.response.data);
+        console.error(e.response.status);
+        console.error(e.response.headers);
+    }
+};
+
+sendMessageButton(number);
