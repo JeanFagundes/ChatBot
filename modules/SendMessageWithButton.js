@@ -59,9 +59,9 @@ module.exports = async function sendMessageButton(body_param, number) {
 
       try {
         const resp = await axios(config);
-
-        return JSON.stringify(resp);
+        return resp.data;
       } catch (e) {
+        console.error(e);
         console.error(e.response.data);
         console.error(e.response.status);
         console.error(e.response.headers);
