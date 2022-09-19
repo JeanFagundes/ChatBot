@@ -3,6 +3,7 @@
 /* eslint-disable camelcase */
 const sendMessage = require('../modules/SendMessage');
 const sendMessageButton = require('../modules/SendMessageWithButton');
+const ReceiveMessage = require('../modules/ReceiveMessage');
 
 module.exports = class MessagesController {
   static async sendInitialMessage(req, res) {
@@ -17,6 +18,13 @@ module.exports = class MessagesController {
     const body_param = ({} = req.body);
     const number = 5511954406674;
     const result = await sendMessageButton(body_param, number);
+    res.send(result);
+  }
+
+  static async receiveMessage(req, res) {
+    const body_param = ({} = req.body);
+
+    const result = await ReceiveMessage(body_param);
     res.send(result);
   }
 };

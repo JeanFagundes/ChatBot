@@ -6,4 +6,6 @@ const MessagesController = require('../controllers/MessagesController');
 router.post('/webhook', MessagesController.sendInitialMessage);
 router.post('/sendMessageButton', MessagesController.sendMessagesWithButton);
 
+router.get('/receiveMessage', MessagesController.receiveMessage);
+
 module.exports = router;
