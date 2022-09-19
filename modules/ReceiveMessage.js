@@ -20,15 +20,15 @@ module.exports = async function receiveMessage(body_param) {
         body_param.entry[0].changes[0].value.messages[0].text.body;
       const phon_no_id =
         body_param.entry[0].changes[0].value.metadata.phone_number_id;
-      const { from } = body_param.entry[0].changes[0].value.messages[0];
+      const to = body_param.entry[0].changes[0].value.messages[0].from;
       console.log(`phone number ${phon_no_id}`);
-      console.log(`from ${from}`);
+      console.log(`from ${to}`);
       console.log(`body param ${msg_body}`);
 
       const data = JSON.stringify({
         messaging_product: 'whatsapp',
         recipient_type: 'individual',
-        to: phon_no_id,
+        to,
         type: 'text',
         text: {
           body: msg_body,
