@@ -6,9 +6,10 @@ const sendMessageButton = require('../modules/SendMessageWithButton');
 
 module.exports = class MessagesController {
   static async sendInitialMessage(req, res) {
-    const body_param = ({} = req.body);
-    const number = 5511954406674;
-    const result = await sendMessage(body_param, number);
+    // const body_param = ({} = req.body);
+    // const number = 5511954406674;
+    const { number } = req.body;
+    const result = await sendMessage(number);
     res.send(result);
   }
 
