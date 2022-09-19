@@ -44,6 +44,8 @@ module.exports = async function receiveMessage(body_param) {
         },
         data,
       };
+
+      return msg_body;
       // try {
       //   const resp = await axios(config);
       //   return resp.data;
