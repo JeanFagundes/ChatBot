@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const axios = require('axios');
 const receiveFirstResponse = require('./responses/receiveFirstResponse');
-const receivefirstMessageWithFirstMessage = require('./responses/receiveFirstMessageWithFirstMessage');
+// const receivefirstMessageWithFirstMessage = require('./responses/receiveFirstMessageWithFirstMessage');
 
 require('dotenv').config();
 
@@ -17,7 +17,7 @@ module.exports = async function sendMessageButton(number) {
   //   body_param.entry[0].changes[0].value.messages &&
   //   body_param.entry[0].changes[0].value.messages[0]
   // ) {
-  const data = JSON.stringify({
+  const data = {
     messaging_product: 'whatsapp',
     recipient_type: 'individual',
     to: number,
@@ -46,7 +46,7 @@ module.exports = async function sendMessageButton(number) {
         ],
       },
     },
-  });
+  };
 
   const config = {
     method: 'POST',
@@ -65,7 +65,7 @@ module.exports = async function sendMessageButton(number) {
     // console.log(resp.data.messages[0].id);
     // console.log(resp.data);
     console.log('numero da fera ', resp.data.contacts[0].input);
-    const answer = await receivefirstMessageWithFirstMessage(resp);
+    // const answer = await receivefirstMessageWithFirstMessage(resp);
     const resposta = await receiveFirstResponse(resp);
 
     console.log(resposta);

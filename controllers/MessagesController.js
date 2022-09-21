@@ -31,4 +31,8 @@ module.exports = class MessagesController {
     const response = req.params;
     res.send(response);
   }
+
+  static async homePage(req, res) {
+    res.status(200).send('Wellcome');
+  }
 };
