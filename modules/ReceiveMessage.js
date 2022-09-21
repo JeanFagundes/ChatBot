@@ -56,8 +56,9 @@ module.exports = async function receiveMessage(body_param) {
         console.error(e.response.data);
         console.error(e.response.headers);
       }
+    } else {
+      return 'nenhum corpo de mensagem';
     }
-    return 'nenhum corpo de mensagem';
   }
   return 'nenhuma mensagem por enquanto';
 };
