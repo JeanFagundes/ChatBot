@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
 const axios = require('axios');
+const receiveMessage = require('./ReceiveMessage');
+
 require('dotenv').config();
 
 module.exports = async function sendMessageButton(number) {
@@ -60,7 +62,8 @@ module.exports = async function sendMessageButton(number) {
   try {
     const resp = await axios(config);
     console.log(resp.data.messages[0].id);
-    return [resp.data, resp.data.messages[0].id];
+    return receiveMessage(resp.data);
+    // return [resp.data, resp.data.messages[0].id];
   } catch (e) {
     console.error(e);
     console.error(e.response.data);
