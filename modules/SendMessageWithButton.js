@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 const axios = require('axios');
-const receiveMessage = require('./ReceiveMessage');
+const receiveFirstResponse = require('./responses/receiveFirstResponse');
+const receivefirstMessageWithFirstMessage = require('./responses/receiveFirstMessageWithFirstMessage');
 
 require('dotenv').config();
 
@@ -61,14 +62,20 @@ module.exports = async function sendMessageButton(number) {
 
   try {
     const resp = await axios(config);
-    console.log(resp.data.messages[0].id);
-    return receiveMessage(resp.data);
+    // console.log(resp.data.messages[0].id);
+    // console.log(resp.data);
+    console.log('numero da fera ', resp.data.contacts[0].input);
+    const answer = await receivefirstMessageWithFirstMessage(resp);
+    const resposta = await receiveFirstResponse(resp);
+
+    console.log(resposta);
+    return resp.data;
     // return [resp.data, resp.data.messages[0].id];
   } catch (e) {
-    console.error(e);
-    console.error(e.response.data);
-    console.error(e.response.status);
-    console.error(e.response.headers);
+    console.error(e.message);
+    // console.error(e.response.data);
+    // console.error(e.response.status);
+    // console.error(e.response.headers);
   }
 
   return 'Não foi possivel fazer a requisição';

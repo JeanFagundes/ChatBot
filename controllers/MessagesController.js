@@ -26,4 +26,9 @@ module.exports = class MessagesController {
     const result = await ReceiveMessage(body_param);
     res.send(result);
   }
+
+  static async receiveFirstResponse(req, res) {
+    const response = req.params;
+    res.send(response);
+  }
 };
