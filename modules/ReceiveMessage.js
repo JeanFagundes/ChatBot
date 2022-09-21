@@ -12,7 +12,7 @@ module.exports = async function receiveMessage(body_param) {
       body_param.entry &&
       body_param.entry[0].changes &&
       body_param.entry[0].changes[0].value.messages &&
-      body_param.entry[0].changes[0].value.messages[0].text.body
+      body_param.entry[0].changes[0].value.messages[0]
     ) {
       console.log('entrou no segundo if');
 
