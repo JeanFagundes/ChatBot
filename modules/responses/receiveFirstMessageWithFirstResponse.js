@@ -2,14 +2,14 @@
 require('dotenv').config();
 const axios = require('axios');
 
-module.exports = async function receivefirstMessageWithFirstMessage(resp) {
+module.exports = async function receivefirstMessageWithFirstMessage(
+  resp,
+  body_param,
+) {
+  // criar um middleware para receber a reposta e enviar para essa função
   const token = process.env.TOKEN;
 
-  console.log('entrou no segundo if');
-
-  console.log(`phone number ${phon_no_id}`);
-  console.log(`from ${to}`);
-  console.log(`body param ${msg_body}`);
+  const { answer } = body_param;
 
   const data = JSON.stringify({
     messaging_product: 'whatsapp',
@@ -20,7 +20,7 @@ module.exports = async function receivefirstMessageWithFirstMessage(resp) {
     },
     type: 'text',
     text: {
-      body: msg_body,
+      body: answer,
     },
   });
 
