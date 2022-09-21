@@ -50,6 +50,7 @@ module.exports = async function sendMessage(number) {
     console.error(e.response.status);
     console.error(e.response.headers);
   }
+  return `não foi possivel enviar a mensagem para o numero ${number}`;
 };
 // return 'não tem parametro no corpo';
 //   }

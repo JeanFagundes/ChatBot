@@ -15,9 +15,8 @@ module.exports = class MessagesController {
   }
 
   static async sendMessagesWithButton(req, res) {
-    const body_param = ({} = req.body);
-    const number = 5511954406674;
-    const result = await sendMessageButton(body_param, number);
+    const { number } = req.body;
+    const result = await sendMessageButton(number);
     res.send(result);
   }
 
