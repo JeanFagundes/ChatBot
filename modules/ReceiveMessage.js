@@ -5,6 +5,8 @@ const axios = require('axios');
 module.exports = async function receiveMessage(body_param) {
   const token = process.env.TOKEN;
 
+  console.log(JSON.stringify(body_param, null, 2));
+
   if (body_param.object) {
     console.log('inside body param');
 
