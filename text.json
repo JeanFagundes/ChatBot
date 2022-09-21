@@ -44,4 +44,55 @@
       ]
     }
   ]
-}
+},
+ {
+   "object": "whatsapp_business_account",
+   "entry": [
+     {
+       "id": "106267015566642",
+       "changes": [
+         {
+           "value": {
+             "messaging_product": "whatsapp",
+             "metadata": {
+               "display_phone_number": "15550705204",
+               "phone_number_id": "103734019157955"
+             },
+             "contacts": [
+               {
+                 "profile": {
+                   "name": "Jean"
+                 },
+                 "wa_id": "5511954406674"
+               }
+             ],
+             "messages": [
+               {
+                 "context": {
+                   "from": "15550705204",
+                   "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABEYEjJGOUJEOTY0RjlERDc5RTRERQA="
+                 },
+                 "from": "5511954406674",
+                 "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABIYIDE2MkRGQUQ3OEExRkU2QUExNTk2MEE3MDRCNzY5OTE1AA==",
+                 "timestamp": "1663788051",
+                 "type": "interactive",
+                 "interactive": {
+                   "type": "button_reply",
+                   "button_reply": {
+                     "id": "1",
+                     "title": "Sim"
+                   }
+                 }
+               }
+             ]
+           },
+           "field": "messages"
+         }
+       ]
+     }
+   ]
+ }
+ inside body param
+ entrou no segundo if
+ /app/modules/ReceiveMessage.js:22
+         body_param.entry[0].changes[0].value.messages[0].text.body;
