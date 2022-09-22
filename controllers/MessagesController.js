@@ -1,9 +1,8 @@
-/* eslint-disable no-empty-pattern */
-/* eslint-disable no-multi-assign */
-/* eslint-disable camelcase */
 const sendMessage = require('../modules/SendMessage');
 const sendMessageButton = require('../modules/SendMessageWithButton');
 const ReceiveMessage = require('../modules/ReceiveMessage');
+const ReceiveMessageConstructor = require('../modules/class/ReceiveMessageConstructor');
+const receiveFirstResponse = require('../modules/responses/receiveFirstResponse');
 
 module.exports = class MessagesController {
   static async sendInitialMessage(req, res) {
@@ -21,10 +20,35 @@ module.exports = class MessagesController {
   }
 
   static async receiveMessage(req, res) {
-    const body_param = req.body;
+    const body_param = await req.body;
+    const receive = new ReceiveMessageConstructor(
+      body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
+      body_param.entry[0].changes[0].value.messages[0].interactive.buttonReply
+        .id || undefined,
+      body_param.entry[0].changes[0].value.metadata.phone_number_id,
+      body_param.entry[0].changes[0].value.messages[0].from,
+    );
+    receive.validacoes();
 
-    const result = await ReceiveMessage(body_param);
+    const result = await ReceiveMessage(receive);
+
     res.send(result);
+    // if (body_param.object) {
+    //   console.log('inside body param');
+
+    //   if (
+    //     body_param.entry &&
+    //     body_param.entry[0].changes &&
+    //     body_param.entry[0].changes[0].value.messages &&
+    //     body_param.entry[0].changes[0].value.messages[0]
+    //   ) {
+    //     const msg_body =
+    //       body_param.entry[0].changes[0].value.messages[0].text.body;
+    //     const phon_no_id =
+    //       body_param.entry[0].changes[0].value.metadata.phone_number_id;
+    //     const { from } = body_param.entry[0].changes[0].value.messages[0];
+    //   }
+    // }
   }
 
   static async receiveFirstResponse(req, res) {
