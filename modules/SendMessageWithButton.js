@@ -66,9 +66,9 @@ module.exports = async function sendMessageButton(number) {
     // console.log(resp.data);
     console.log('numero da fera ', resp.data.contacts[0].input);
     // const answer = await receivefirstMessageWithFirstMessage(resp);
-    const resposta = await receiveFirstResponse(resp);
+    // const resposta = await receiveFirstResponse(resp);
 
-    console.log(resposta);
+    // console.log(resposta);
     return resp.data;
     // return [resp.data, resp.data.messages[0].id];
   } catch (e) {

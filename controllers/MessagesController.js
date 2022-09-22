@@ -21,10 +21,9 @@ module.exports = class MessagesController {
 
   static async receiveMessage(req, res) {
     const body_param = await req.body;
-    console.log(JSON.stringify(body_param, null, 2));
+    // console.log(JSON.stringify(body_param, null, 2));
     let receive = new ReceiveMessageConstructor();
 
-    console.log('entrou no if');
     if (body_param.object) {
       console.log('inside body param');
 
@@ -34,10 +33,48 @@ module.exports = class MessagesController {
         body_param.entry[0].changes[0].value.messages &&
         body_param.entry[0].changes[0].value.messages[0]
       ) {
-        const { body } = body_param.entry[0].changes[0].value.messages[0].text;
+        let body;
+
+        // eslint-disable-next-line no-inner-declarations
+        function getSafe(fn, defaultVal) {
+          try {
+            return fn();
+          } catch (e) {
+            return defaultVal;
+          }
+        }
+
+        // arrumar um jeito de retornar o text.body
+        console.log(
+          getSafe(
+            () => body_param.entry[0].changes[0].value.messages[0].text.body,
+            (body =
+              body_param.entry[0].changes[0].value.messages[0].interactive
+                .button_reply.id),
+          ),
+        );
+        // try {
+        //   if (
+        //     body_param.entry[0].changes[0].value.messages[0].text.body !==
+        //     'undefined'
+        //   ) {
+        //     body = body_param.entry[0].changes[0].value.messages[0].text.body;
+        //   } else if (
+        //     body_param.entry[0].changes[0].value.messages[0].interactive
+        //       .button_reply.id !== 'undefined'
+        //   ) {
+        //     body =
+        //       body_param.entry[0].changes[0].value.messages[0].interactive
+        //         .button_reply.id;
+        //   }
+        // } catch (error) {
+        //   console.log(error.message);
+        // }
+
         const number =
           body_param.entry[0].changes[0].value.metadata.phone_number_id;
         const { from } = body_param.entry[0].changes[0].value.messages[0];
+
         console.log(body);
         receive = new ReceiveMessageConstructor(body, number, from);
         const result = await ReceiveMessage(receive);
@@ -46,7 +83,7 @@ module.exports = class MessagesController {
 
         // const receive = new ReceiveMessageConstructor(
         //   body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
-        //   body_param.entry[0].changes[0].value.messages[0].interactive.buttonReply
+        //   body_param.entry[0].changes[0].value.messages[0].interactive.button_reply
         //     .id || undefined,
         //   body_param.entry[0].changes[0].value.metadata.phone_number_id,
         //   body_param.entry[0].changes[0].value.messages[0].from,
@@ -57,22 +94,6 @@ module.exports = class MessagesController {
       } else {
         res.send('Sem Parametros nenhum');
       }
-      // if (body_param.object) {
-      //   console.log('inside body param');
-
-      //   if (
-      //     body_param.entry &&
-      //     body_param.entry[0].changes &&
-      //     body_param.entry[0].changes[0].value.messages &&
-      //     body_param.entry[0].changes[0].value.messages[0]
-      //   ) {
-      //     const msg_body =
-      //       body_param.entry[0].changes[0].value.messages[0].text.body;
-      //     const phon_no_id =
-      //       body_param.entry[0].changes[0].value.metadata.phone_number_id;
-      //     const { from } = body_param.entry[0].changes[0].value.messages[0];
-      //   }
-      // }
     } else {
       res.send('Sem parametros');
     }
