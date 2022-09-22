@@ -54,6 +54,8 @@ module.exports = class MessagesController {
         // receive.validacoes();
 
         res.send(result);
+      } else {
+        res.send('Sem Parametros nenhum');
       }
       // if (body_param.object) {
       //   console.log('inside body param');
@@ -71,6 +73,8 @@ module.exports = class MessagesController {
       //     const { from } = body_param.entry[0].changes[0].value.messages[0];
       //   }
       // }
+    } else {
+      res.send('Sem parametros');
     }
   }
 
