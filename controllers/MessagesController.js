@@ -21,7 +21,7 @@ module.exports = class MessagesController {
 
   static async receiveMessage(req, res) {
     const body_param = await req.body;
-    console.log(body_param);
+    console.log(JSON.stringify(body_param, null, 2));
     let receive = new ReceiveMessageConstructor();
 
     if (
@@ -29,11 +29,11 @@ module.exports = class MessagesController {
         .id
     ) {
       console.log('entrou no if');
-      receive = new ReceiveMessageConstructor(
-        body_param.entry[0].changes[0].value.messages[0].text.body,
-        body_param.entry[0].changes[0].value.metadata.phone_number_id,
-        body_param.entry[0].changes[0].value.messages[0].from,
-      );
+      const { body } = body_param.entry[0].changes[0].value.messages[0].text;
+      const number =
+        body_param.entry[0].changes[0].value.metadata.phone_number_id;
+      const { from } = body_param.entry[0].changes[0].value.messages[0];
+      receive = new ReceiveMessageConstructor(body, number, from);
       console.log(receive);
     }
 
