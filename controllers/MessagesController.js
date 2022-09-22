@@ -30,6 +30,7 @@ module.exports = class MessagesController {
       body_param.entry[0].changes[0].value.metadata.phone_number_id;
     const { from } = body_param.entry[0].changes[0].value.messages[0];
     console.log(body, number, from);
+
     receive = new ReceiveMessageConstructor(body, number, from);
     console.log(receive);
 

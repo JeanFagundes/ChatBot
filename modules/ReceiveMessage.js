@@ -51,7 +51,7 @@ module.exports = async function receiveMessage(body_param) {
     const resp = await axios(config);
     return resp.data;
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     console.error(e.response.status);
     console.error(e.response.data);
     console.error(e.response.headers);
