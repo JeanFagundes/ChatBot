@@ -19,7 +19,7 @@ module.exports = async function receiveMessage(body_param) {
       console.log('entrou no segundo if');
 
       const msg_body =
-        body_param.entry[0].changes[0].value.messages[0].text.body;
+        body_param.entry[0].changes[0].value.messages[0]?.text.body;
       const phon_no_id =
         body_param.entry[0].changes[0].value.metadata.phone_number_id;
       const { from } = body_param.entry[0].changes[0].value.messages[0];
