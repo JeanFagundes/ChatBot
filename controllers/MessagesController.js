@@ -40,22 +40,21 @@ module.exports = class MessagesController {
         const { from } = body_param.entry[0].changes[0].value.messages[0];
         console.log(body);
         receive = new ReceiveMessageConstructor(body, number, from);
+        const result = await ReceiveMessage(receive);
+
+        console.log('receive parametros', receive.msg_body);
+
+        // const receive = new ReceiveMessageConstructor(
+        //   body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
+        //   body_param.entry[0].changes[0].value.messages[0].interactive.buttonReply
+        //     .id || undefined,
+        //   body_param.entry[0].changes[0].value.metadata.phone_number_id,
+        //   body_param.entry[0].changes[0].value.messages[0].from,
+        // );
+        // receive.validacoes();
+
+        res.send(result);
       }
-
-      console.log('receive parametros', receive.msg_body);
-
-      // const receive = new ReceiveMessageConstructor(
-      //   body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
-      //   body_param.entry[0].changes[0].value.messages[0].interactive.buttonReply
-      //     .id || undefined,
-      //   body_param.entry[0].changes[0].value.metadata.phone_number_id,
-      //   body_param.entry[0].changes[0].value.messages[0].from,
-      // );
-      // receive.validacoes();
-
-      const result = await ReceiveMessage(receive);
-
-      res.send(result);
       // if (body_param.object) {
       //   console.log('inside body param');
 
