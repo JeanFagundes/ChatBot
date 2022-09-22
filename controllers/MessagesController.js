@@ -21,17 +21,20 @@ module.exports = class MessagesController {
 
   static async receiveMessage(req, res) {
     const body_param = await req.body;
+    console.log(body_param);
     let receive = new ReceiveMessageConstructor();
 
     if (
       !body_param.entry[0].changes[0].value.messages[0].interactive.buttonReply
         .id
     ) {
+      console.log('entrou no if');
       receive = new ReceiveMessageConstructor(
         body_param.entry[0].changes[0].value.messages[0].text.body,
         body_param.entry[0].changes[0].value.metadata.phone_number_id,
         body_param.entry[0].changes[0].value.messages[0].from,
       );
+      console.log(receive);
     }
 
     // const receive = new ReceiveMessageConstructor(
@@ -41,7 +44,7 @@ module.exports = class MessagesController {
     //   body_param.entry[0].changes[0].value.metadata.phone_number_id,
     //   body_param.entry[0].changes[0].value.messages[0].from,
     // );
-    receive.validacoes();
+    // receive.validacoes();
 
     const result = await ReceiveMessage(receive);
 
