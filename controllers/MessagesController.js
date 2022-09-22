@@ -25,44 +25,54 @@ module.exports = class MessagesController {
     let receive = new ReceiveMessageConstructor();
 
     console.log('entrou no if');
+    if (body_param.object) {
+      console.log('inside body param');
 
-    const { body } = body_param.entry[0].changes[0].value.messages[0].text;
-    const number =
-      body_param.entry[0].changes[0].value.metadata.phone_number_id;
-    const { from } = body_param.entry[0].changes[0].value.messages[0];
-    console.log(body);
+      if (
+        body_param.entry &&
+        body_param.entry[0].changes &&
+        body_param.entry[0].changes[0].value.messages &&
+        body_param.entry[0].changes[0].value.messages[0]
+      ) {
+        const { body } = body_param.entry[0].changes[0].value.messages[0].text;
+        const number =
+          body_param.entry[0].changes[0].value.metadata.phone_number_id;
+        const { from } = body_param.entry[0].changes[0].value.messages[0];
+        console.log(body);
+        receive = new ReceiveMessageConstructor(body, number, from);
+      }
 
-    receive = new ReceiveMessageConstructor(body, number, from);
-    console.log('receive parametros', receive.msg_body);
+      console.log('receive parametros', receive.msg_body);
 
-    // const receive = new ReceiveMessageConstructor(
-    //   body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
-    //   body_param.entry[0].changes[0].value.messages[0].interactive.buttonReply
-    //     .id || undefined,
-    //   body_param.entry[0].changes[0].value.metadata.phone_number_id,
-    //   body_param.entry[0].changes[0].value.messages[0].from,
-    // );
-    // receive.validacoes();
+      // const receive = new ReceiveMessageConstructor(
+      //   body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
+      //   body_param.entry[0].changes[0].value.messages[0].interactive.buttonReply
+      //     .id || undefined,
+      //   body_param.entry[0].changes[0].value.metadata.phone_number_id,
+      //   body_param.entry[0].changes[0].value.messages[0].from,
+      // );
+      // receive.validacoes();
 
-    const result = await ReceiveMessage(receive);
+      const result = await ReceiveMessage(receive);
 
-    res.send(result);
-    // if (body_param.object) {
-    //   console.log('inside body param');
+      res.send(result);
+      // if (body_param.object) {
+      //   console.log('inside body param');
 
-    //   if (
-    //     body_param.entry &&
-    //     body_param.entry[0].changes &&
-    //     body_param.entry[0].changes[0].value.messages &&
-    //     body_param.entry[0].changes[0].value.messages[0]
-    //   ) {
-    //     const msg_body =
-    //       body_param.entry[0].changes[0].value.messages[0].text.body;
-    //     const phon_no_id =
-    //       body_param.entry[0].changes[0].value.metadata.phone_number_id;
-    //     const { from } = body_param.entry[0].changes[0].value.messages[0];
-    //   }
-    // }
+      //   if (
+      //     body_param.entry &&
+      //     body_param.entry[0].changes &&
+      //     body_param.entry[0].changes[0].value.messages &&
+      //     body_param.entry[0].changes[0].value.messages[0]
+      //   ) {
+      //     const msg_body =
+      //       body_param.entry[0].changes[0].value.messages[0].text.body;
+      //     const phon_no_id =
+      //       body_param.entry[0].changes[0].value.metadata.phone_number_id;
+      //     const { from } = body_param.entry[0].changes[0].value.messages[0];
+      //   }
+      // }
+    }
   }
 
   static async receiveFirstResponse(req, res) {
