@@ -24,18 +24,13 @@ module.exports = class MessagesController {
     console.log(JSON.stringify(body_param, null, 2));
     let receive = new ReceiveMessageConstructor();
 
-    if (
-      !body_param.entry[0].changes[0].value.messages[0].interactive.buttonReply
-        .id
-    ) {
-      console.log('entrou no if');
-      const { body } = body_param.entry[0].changes[0].value.messages[0].text;
-      const number =
-        body_param.entry[0].changes[0].value.metadata.phone_number_id;
-      const { from } = body_param.entry[0].changes[0].value.messages[0];
-      receive = new ReceiveMessageConstructor(body, number, from);
-      console.log(receive);
-    }
+    console.log('entrou no if');
+    const { body } = body_param.entry[0].changes[0].value.messages[0].text;
+    const number =
+      body_param.entry[0].changes[0].value.metadata.phone_number_id;
+    const { from } = body_param.entry[0].changes[0].value.messages[0];
+    receive = new ReceiveMessageConstructor(body, number, from);
+    console.log(receive);
 
     // const receive = new ReceiveMessageConstructor(
     //   body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
