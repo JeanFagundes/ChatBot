@@ -25,14 +25,15 @@ module.exports = class MessagesController {
     let receive = new ReceiveMessageConstructor();
 
     console.log('entrou no if');
+
     const { body } = body_param.entry[0].changes[0].value.messages[0].text;
     const number =
       body_param.entry[0].changes[0].value.metadata.phone_number_id;
     const { from } = body_param.entry[0].changes[0].value.messages[0];
-    console.log(body, number, from);
+    console.log(body);
 
     receive = new ReceiveMessageConstructor(body, number, from);
-    console.log(receive);
+    console.log('receive parametros', receive.msg_body);
 
     // const receive = new ReceiveMessageConstructor(
     //   body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
