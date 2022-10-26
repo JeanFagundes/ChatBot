@@ -1,7 +1,6 @@
 const sendMessage = require('../modules/SendMessage');
 const sendMessageButton = require('../modules/SendMessageWithButton');
 const ReceiveMessage = require('../modules/ReceiveMessage');
-const ReceiveMessageConstructor = require('../modules/class/ReceiveMessageConstructor');
 // const receiveFirstResponse = require('../modules/responses/receiveFirstResponse');
 
 module.exports = class MessagesController {
@@ -22,7 +21,6 @@ module.exports = class MessagesController {
   static async receiveMessage(req, res) {
     const body_param = await req.body;
     // console.log(JSON.stringify(body_param, null, 2));
-    let receive = new ReceiveMessageConstructor();
 
     if (body_param.object) {
       console.log('inside body param');
@@ -33,26 +31,6 @@ module.exports = class MessagesController {
         body_param.entry[0].changes[0].value.messages &&
         body_param.entry[0].changes[0].value.messages[0]
       ) {
-        let body;
-
-        // eslint-disable-next-line no-inner-declarations
-        function getSafe(fn, defaultVal) {
-          try {
-            return fn();
-          } catch (e) {
-            return defaultVal;
-          }
-        }
-
-        // arrumar um jeito de retornar o text.body
-        console.log(
-          getSafe(
-            () => body_param.entry[0].changes[0].value.messages[0].text.body,
-            (body =
-              body_param.entry[0].changes[0].value.messages[0].interactive
-                .button_reply.id),
-          ),
-        );
         // try {
         //   if (
         //     body_param.entry[0].changes[0].value.messages[0].text.body !==
@@ -75,7 +53,6 @@ module.exports = class MessagesController {
           body_param.entry[0].changes[0].value.metadata.phone_number_id;
         const { from } = body_param.entry[0].changes[0].value.messages[0];
 
-        console.log(body);
         receive = new ReceiveMessageConstructor(body, number, from);
         const result = await ReceiveMessage(receive);
 
