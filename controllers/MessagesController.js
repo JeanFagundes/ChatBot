@@ -1,9 +1,15 @@
 const sendMessage = require('../modules/SendMessage');
 const sendMessageButton = require('../modules/SendMessageWithButton');
 const ReceiveMessage = require('../modules/ReceiveMessage');
+const webhookVerification = require('../modules/webhookVerification');
 // const receiveFirstResponse = require('../modules/responses/receiveFirstResponse');
 
 module.exports = class MessagesController {
+  static async webhook(req, res) {
+    const result = await webhookVerification(req);
+    res.send(result);
+  }
+
   static async sendInitialMessage(req, res) {
     // const body_param = ({} = req.body);
     // const number = 5511954406674;

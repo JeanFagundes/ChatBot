@@ -9,8 +9,6 @@ const app = express().use(body_parser.json());
 app.use(cors());
 app.use(express.json());
 
-const mytoken = process.env.MYTOKEN;
-
 app.use(
   express.urlencoded({
     extended: true,
@@ -25,25 +23,26 @@ app.listen(process.env.PORT, () => {
 
 // to verify the callback url from dashboard side - cloud api side
 // eslint-disable-next-line consistent-return
-app.get('/webhook', async (req, res) => {
-  console.log('entrou aqui');
-  const mode = req.query['hub.mode'];
-  const challange = req.query['hub.challenge'];
-  const token = req.query['hub.verify_token'];
+// app.get('/webhook', async (req, res) => {
+//   console.log('entrou aqui');
+//   const mode = req.query['hub.mode'];
+//   const challange = req.query['hub.challenge'];
+//   const token = req.query['hub.verify_token'];
 
-  console.log(mode, challange, token);
+//   console.log(mode, challange, token);
 
-  if (mode && token) {
-    console.log('entrou no if do get /webhook');
+//   if (mode && token) {
+//     console.log('entrou no if do get /webhook');
 
-    if (mode === 'subscribe' && token === mytoken) {
-      console.log('status 200 do get /webhook');
-      return res.status(200).send(challange, 'hello');
-    }
-    console.log('status 403 do get /webhook');
-    return res.status(403).send('Acess denied');
-  }
-});
+//     if (mode === 'subscribe' && token === mytoken) {
+//       console.log('status 200 do get /webhook');
+//       // return res.status(200).send(challange, 'hello');
+//       return res.send(200, challange);
+//     }
+//     console.log('status 403 do get /webhook');
+//     return res.status(403).send('Acess denied');
+//   }
+// });
 
 // app.post('/webhook', async (req, res) => { // i want some
 //   const body_param = req.body;
@@ -238,4 +237,4 @@ app.get('/webhook', async (req, res) => {
 //   });
 // }
 
-// sendMessageButton(number);
+// sendMessageButton(number)
