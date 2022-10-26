@@ -5,6 +5,7 @@ const webhookVerification = require('../modules/webhookVerification');
 // const receiveFirstResponse = require('../modules/responses/receiveFirstResponse');
 
 module.exports = class MessagesController {
+  
   static async webhook(req, res) {
     const result = await webhookVerification(req);
     res.send(result);

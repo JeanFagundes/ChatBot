@@ -8,5 +8,5 @@ router.post('/sendMessageButton', MessagesController.sendMessagesWithButton);
 router.post('/webhook', MessagesController.receiveMessage);
 
 router.get('/', MessagesController.homePage);
-router.get('/webhook', MessagesController.Webhook);
+router.get('/webhook', MessagesController.webhook);
 module.exports = router;
