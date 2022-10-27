@@ -5,7 +5,6 @@ const webhookVerification = require('../modules/webhookVerification');
 // const receiveFirstResponse = require('../modules/responses/receiveFirstResponse');
 
 module.exports = class MessagesController {
-  
   static async webhook(req, res) {
     const result = await webhookVerification(req);
     res.send(result);
@@ -38,48 +37,8 @@ module.exports = class MessagesController {
         body_param.entry[0].changes[0].value.messages &&
         body_param.entry[0].changes[0].value.messages[0]
       ) {
-        // try {
-        //   if (
-        //     body_param.entry[0].changes[0].value.messages[0].text.body !==
-        //     'undefined'
-        //   ) {
-        //     body = body_param.entry[0].changes[0].value.messages[0].text.body;
-        //   } else if (
-        //     body_param.entry[0].changes[0].value.messages[0].interactive
-        //       .button_reply.id !== 'undefined'
-        //   ) {
-        //     body =
-        //       body_param.entry[0].changes[0].value.messages[0].interactive
-        //         .button_reply.id;
-        //   }
-        // } catch (error) {
-        //   console.log(error.message);
-        // }
-
-        const number =
-          body_param.entry[0].changes[0].value.metadata.phone_number_id;
-        const { from } = body_param.entry[0].changes[0].value.messages[0];
-
-        receive = new ReceiveMessageConstructor(body, number, from);
-        const result = await ReceiveMessage(receive);
-
-        console.log('receive parametros', receive.msg_body);
-
-        // const receive = new ReceiveMessageConstructor(
-        //   body_param.entry[0].changes[0].value.messages[0].text.body || undefined,
-        //   body_param.entry[0].changes[0].value.messages[0].interactive.button_reply
-        //     .id || undefined,
-        //   body_param.entry[0].changes[0].value.metadata.phone_number_id,
-        //   body_param.entry[0].changes[0].value.messages[0].from,
-        // );
-        // receive.validacoes();
-
-        res.send(result);
-      } else {
-        res.send('Sem Parametros nenhum');
+        res.send(body_param.entry[0].changes[0].value.messages[0].text.body);
       }
-    } else {
-      res.send('Sem parametros');
     }
   }
 
