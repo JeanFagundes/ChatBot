@@ -18,5 +18,5 @@ module.exports = async function webhook(req) {
     console.log('status 403 do get /webhook');
     return 'Acess denied';
   }
-  return 'no webhook enviado';
+  return 'nenhum webhook enviado';
 };
