@@ -13,7 +13,9 @@ module.exports = async function receiveMessage(body_param) {
     return 'seloco';
   }
   if (typeMessage === 'interactive') {
-    console.log(JSON.stringify(body_param, null, 2));
+    const message = JSON.stringify(body_param, null, 2);
+    console.log(message);
+    console.log(body_param.entry[0].changes[0].value.messages[0].context.id);
     return 'Deu certo a tipagem';
   }
   return new Error(`Tipo de mensagem invalido${typeMessage}`);
