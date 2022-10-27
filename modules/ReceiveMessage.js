@@ -2,20 +2,18 @@
 require('dotenv').config();
 const axios = require('axios');
 
-module.exports = async function receiveMessage(receive) {
+module.exports = async function receiveMessage(body_param) {
   const token = process.env.TOKEN;
 
-  console.log('por dentro da função');
-  console.log(receive.msg_body);
-  console.log(receive);
+  console.log(body_param);
 
   const data = JSON.stringify({
     messaging_product: 'whatsapp',
     recipient_type: 'individual',
-    to: receive.from,
+    to: body_param.entry[0].changes[0].value.messages[0].from,
     type: 'text',
     text: {
-      body: receive.msg_body,
+      body: body_param.entry[0].changes[0].value.messages[0].text.body,
     },
   });
 

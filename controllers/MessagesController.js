@@ -29,15 +29,14 @@ module.exports = class MessagesController {
     // console.log(JSON.stringify(body_param, null, 2));
 
     if (body_param.object) {
-      console.log('inside body param');
-
       if (
         body_param.entry &&
         body_param.entry[0].changes &&
         body_param.entry[0].changes[0].value.messages &&
         body_param.entry[0].changes[0].value.messages[0]
       ) {
-        res.send(body_param.entry[0].changes[0].value.messages[0].text.body);
+        const result = await ReceiveMessage(body_param);
+        res.send(result);
       }
     }
   }
