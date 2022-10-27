@@ -1,4 +1,4 @@
-const { sendAnswerWithButton } = require('../controllers/MessagesController');
+const SendAnswerWithButton = require('./SendAnswerWithButton');
 
 /* eslint-disable camelcase */
 require('dotenv').config();
@@ -30,7 +30,7 @@ module.exports = async function receiveMessage(body_param) {
         },
       });
 
-      sendAnswerWithButton(data);
+      SendAnswerWithButton(data);
     }
 
     return answer;
