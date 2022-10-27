@@ -2,6 +2,7 @@ const sendMessage = require('../modules/SendMessage');
 const sendMessageButton = require('../modules/SendMessageWithButton');
 const ReceiveMessage = require('../modules/ReceiveMessage');
 const webhookVerification = require('../modules/webhookVerification');
+// const sendAnswerWithButton = require('../modules/SendAnswerWithButton');
 // const receiveFirstResponse = require('../modules/responses/receiveFirstResponse');
 
 module.exports = class MessagesController {
@@ -17,6 +18,11 @@ module.exports = class MessagesController {
     const result = await sendMessage(number);
     res.send(result);
   }
+
+  // static async sendAnswerWithButton(req, res) {
+  //   const result = await sendAnswerWithButton();
+  //   return res.send(result);
+  // }
 
   static async sendMessagesWithButton(req, res) {
     const { number } = req.body;
