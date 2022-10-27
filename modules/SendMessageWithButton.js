@@ -25,14 +25,14 @@ module.exports = async function sendMessageButton(number) {
           {
             type: 'reply',
             reply: {
-              id: '1',
+              id: 'First question',
               title: 'Sim',
             },
           },
           {
             type: 'reply',
             reply: {
-              id: '2',
+              id: 'First question',
               title: 'Não',
             },
           },

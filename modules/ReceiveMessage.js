@@ -1,10 +1,7 @@
 /* eslint-disable camelcase */
 require('dotenv').config();
-const axios = require('axios');
 
 module.exports = async function receiveMessage(body_param) {
-  const token = process.env.TOKEN;
-
   console.log(body_param);
 
   const typeMessage = body_param.entry[0].changes[0].value.messages[0].type;
