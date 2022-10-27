@@ -9,7 +9,8 @@ module.exports = async function receiveMessage(body_param) {
   const typeMessage = body_param.entry[0].changes[0].value.messages[0].type;
 
   if (typeMessage === 'text') {
-    return 'seloco';
+    const answer = body_param.entry[0].changes[0].value.messages[0].text.body;
+    console.log(answer);
   }
   if (typeMessage === 'interactive') {
     const message = JSON.stringify(body_param, null, 2);
