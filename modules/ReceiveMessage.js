@@ -36,5 +36,5 @@ module.exports = async function receiveMessage(body_param) {
 
     return answer;
   }
-  return new Error(`Tipo de mensagem invalido${typeMessage}`);
+  return new Error(`Tipo de mensagem invalido ${typeMessage}`);
 };
