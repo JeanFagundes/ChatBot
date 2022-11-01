@@ -5,12 +5,13 @@ require('dotenv').config();
 
 module.exports = async function sendAnswerWithButton(data) {
   const token = process.env.TOKEN;
+  const phoneid = process.env.PHONEID;
 
-  console.log('inside body param');
+  console.log('Enviando resposta do menu de opções');
 
   const config = {
     method: 'POST',
-    url: `https://graph.facebook.com/v14.0/103734019157955/messages?access_token=${token}`,
+    url: `https://graph.facebook.com/v14.0/${phoneid}/messages?access_token=${token}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -18,17 +19,11 @@ module.exports = async function sendAnswerWithButton(data) {
     data,
   };
 
-  console.log('entrou');
-
   try {
     const resp = await axios(config);
 
-    console.log('numero da fera ', resp.data.contacts[0].input);
-
-    return { data: resp.data };
+    return resp.data;
   } catch (e) {
-    console.error(e.message);
+    return e.message;
   }
-
-  return 'Não foi possivel fazer a requisição';
 };
