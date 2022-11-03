@@ -19,6 +19,8 @@ module.exports = async function sendAnswerWithButton(data) {
     data,
   };
 
+  console.log(data);
+
   try {
     const resp = await axios(config);
 
