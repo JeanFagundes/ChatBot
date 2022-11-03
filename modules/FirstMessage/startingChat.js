@@ -45,6 +45,8 @@ module.exports = async function sendMessageButton(number) {
     data,
   };
 
+  console.log(data);
+
   try {
     const resp = await axios(config);
 

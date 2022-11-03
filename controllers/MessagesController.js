@@ -8,7 +8,7 @@ const webhookVerification = require('../modules/webhookVerification');
 module.exports = class MessagesController {
   static async webhook(req, res) {
     const result = await webhookVerification(req);
-    res.send(result);
+    return res.send(result);
   }
 
   static async sendInitialMessage(req, res) {
