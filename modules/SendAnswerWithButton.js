@@ -18,12 +18,10 @@ module.exports = async function sendAnswerWithButton(data) {
     },
     data,
   };
-
   console.log(data);
 
   try {
     const resp = await axios(config);
-
     return resp.data;
   } catch (e) {
     return e.message;

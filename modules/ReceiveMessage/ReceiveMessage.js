@@ -1,4 +1,5 @@
 const SendAnswerWithButton = require('../SendAnswerWithButton');
+const SendAnswerWithText = require('../SendAnswerWithText');
 
 /* eslint-disable camelcase */
 require('dotenv').config();
@@ -10,7 +11,7 @@ module.exports = async function receiveMessage(body_param) {
 
   if (typeMessage === 'text') {
     // ainda não sei o que fazer, vamos lutando
-
+    const message = JSON.stringify(body_param, null, 2);
     const answer = body_param.entry[0].changes[0].value.messages[0].text.body;
     return answer;
   }
@@ -23,7 +24,9 @@ module.exports = async function receiveMessage(body_param) {
           .button_reply.id;
     } catch (error) {
       console.log(error.message);
-      answer = 'fariaLima';
+      answer =
+        body_param.entry[0].changes[0].value.messages[0].interactive.list_reply
+          .id;
     }
 
     const { from } = body_param.entry[0].changes[0].value.messages[0];
@@ -39,7 +42,7 @@ module.exports = async function receiveMessage(body_param) {
         interactive: {
           type: 'button',
           body: {
-            text: 'Perfeito, vamos começar',
+            text: 'Perfeito, vamos começar. "\n" Qual será a forma de retirada dos equipamentos ?',
           },
           action: {
             buttons: [
@@ -80,13 +83,13 @@ module.exports = async function receiveMessage(body_param) {
           type: 'list',
           header: {
             type: 'text',
-            text: 'testando header',
+            text: 'Escritórios',
           },
           body: {
             text: 'Em qual escritório será feito a devolução ?',
           },
           action: {
-            button: 'button_text',
+            button: 'Escritórios',
             sections: [
               {
                 title: 'Escritorios',
@@ -138,10 +141,25 @@ module.exports = async function receiveMessage(body_param) {
 
       await SendAnswerWithButton(data);
     }
-    if (answer === 'fariaLima') {
+    if (answer === 'fariaLima' || answer === 'barao') {
       const message2 = JSON.stringify(body_param, null, 2);
 
       console.log(message2);
+
+      const data = JSON.stringify({
+        messaging_product: 'whatsapp',
+        recipient_type: 'individual',
+        to: from,
+        type: 'text',
+        text: {
+          body: `Você escolheu fazer a entrega dos equipamentos no escritório do(a) ${answer}. "\n"
+          Que dia será feito a devolução ?`,
+        },
+      });
+
+      const validarPergunta = 'Agendar dia da entrega presencial';
+
+      await SendAnswerWithText(data, validarPergunta);
     }
 
     return answer;

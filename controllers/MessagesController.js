@@ -42,9 +42,9 @@ module.exports = class MessagesController {
         body_param.entry[0].changes[0].value.messages[0]
       ) {
         const result = await ReceiveMessage(body_param);
-        return res.send(result);
       }
     }
+    return res.send('Tudo certo');
   }
 
   static async receiveFirstResponse(req, res) {
