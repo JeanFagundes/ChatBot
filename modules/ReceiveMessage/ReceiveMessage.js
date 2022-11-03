@@ -64,7 +64,7 @@ module.exports = async function receiveMessage(body_param) {
       });
       await SendAnswerWithButton(data);
     } else if (answer === 'devolucaoEscritorio') {
-      const data = {
+      const data = JSON.stringify({
         messaging_product: 'whatsapp',
         recipient_type: 'individual',
         to: from,
@@ -131,7 +131,7 @@ module.exports = async function receiveMessage(body_param) {
             ],
           },
         },
-      };
+      });
       await SendAnswerWithButton(data);
     } else if (answer === 'fariaLima') {
       const message2 = JSON.stringify(body_param, null, 2);
