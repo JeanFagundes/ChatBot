@@ -1,4 +1,3 @@
-const { json } = require('body-parser');
 const SendAnswerWithButton = require('../SendAnswerWithButton');
 
 /* eslint-disable camelcase */
@@ -17,9 +16,16 @@ module.exports = async function receiveMessage(body_param) {
   }
   if (typeMessage === 'interactive') {
     const message = JSON.stringify(body_param, null, 2);
-    const answer =
-      body_param.entry[0].changes[0].value.messages[0].interactive.button_reply
-        .id;
+    let answer;
+    try {
+      answer =
+        body_param.entry[0].changes[0].value.messages[0].interactive
+          .button_reply.id;
+    } catch (error) {
+      console.log(error.message);
+      answer = 'fariaLima';
+    }
+
     const { from } = body_param.entry[0].changes[0].value.messages[0];
     console.log(message);
     console.log(answer);
@@ -131,7 +137,8 @@ module.exports = async function receiveMessage(body_param) {
       });
 
       await SendAnswerWithButton(data);
-    } else if (answer === 'fariaLima') {
+    }
+    if (answer === 'fariaLima') {
       const message2 = JSON.stringify(body_param, null, 2);
 
       console.log(message2);

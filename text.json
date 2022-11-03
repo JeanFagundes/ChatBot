@@ -1,136 +1,163 @@
 {
   "object": "whatsapp_business_account",
-  "entry": [
-    {
-      "id": "106267015566642",
-      "changes": [
-        {
-          "value": {
-            "messaging_product": "whatsapp",
-            "metadata": {
-              "display_phone_number": "15550705204",
-              "phone_number_id": "103734019157955"
-            },
-            "contacts": [
-              {
-                "profile": {
-                  "name": "Jean"
-                },
-                "wa_id": "5511954406674"
-              }
-            ],
-            "messages": [
-              {
-                "context": {
-                  "from": "15550705204",
-                  "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABEYEkZGNTMxMTQ4MkQ3NjYyNTIzQgA="
-                },
-                "from": "5511954406674",
-                "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABIYIDk5RjgwMTE1MjIzMkRCQ0FCMDQ2RTEzNzc2OEVFQkJBAA==",
-                "timestamp": "1663352683",
-                "type": "interactive",
-                "interactive": {
-                  "type": "button_reply",
-                  "button_reply": {
-                    "id": "2",
-                    "title": "Não"
-                  }
-                }
-              }
-            ]
+  "entry": [{
+    "id": "106267015566642",
+    "changes": [{
+      "value": {
+        "messaging_product": "whatsapp",
+        "metadata": {
+          "display_phone_number": "15550705204",
+          "phone_number_id": "103734019157955"
+        },
+        "contacts": [{
+          "profile": {
+            "name": "Jean"
           },
-          "field": "messages"
-        }
-      ]
-    }
-  ]
-},
- {
-   "object": "whatsapp_business_account",
-   "entry": [
-     {
-       "id": "106267015566642",
-       "changes": [
-         {
-           "value": {
-             "messaging_product": "whatsapp",
-             "metadata": {
-               "display_phone_number": "15550705204",
-               "phone_number_id": "103734019157955"
-             },
-             "contacts": [
-               {
-                 "profile": {
-                   "name": "Jean"
-                 },
-                 "wa_id": "5511954406674"
-               }
-             ],
-             "messages": [
-               {
-                 "context": {
-                   "from": "15550705204",
-                   "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABEYEjJGOUJEOTY0RjlERDc5RTRERQA="
-                 },
-                 "from": "5511954406674",
-                 "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABIYIDE2MkRGQUQ3OEExRkU2QUExNTk2MEE3MDRCNzY5OTE1AA==",
-                 "timestamp": "1663788051",
-                 "type": "interactive",
-                 "interactive": {
-                   "type": "button_reply",
-                   "button_reply": {
-                     "id": "1",
-                     "title": "Sim"
-                   }
-                 }
-               }
-             ]
-           },
-           "field": "messages"
-         }
-       ]
-     }
-   ]
- }
-
-
-
- {
+          "wa_id": "5511954406674"
+        }],
+        "messages": [{
+          "context": {
+            "from": "15550705204",
+            "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABEYEkZGNTMxMTQ4MkQ3NjYyNTIzQgA="
+          },
+          "from": "5511954406674",
+          "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABIYIDk5RjgwMTE1MjIzMkRCQ0FCMDQ2RTEzNzc2OEVFQkJBAA==",
+          "timestamp": "1663352683",
+          "type": "interactive",
+          "interactive": {
+            "type": "button_reply",
+            "button_reply": {
+              "id": "2",
+              "title": "Não"
+            }
+          }
+        }]
+      },
+      "field": "messages"
+    }]
+  }]
+}, {
   "object": "whatsapp_business_account",
-  "entry": [
-    {
-      "id": "106267015566642",
-      "changes": [
-        {
-          "value": {
-            "messaging_product": "whatsapp",
-            "metadata": {
-              "display_phone_number": "15550705204",
-              "phone_number_id": "103734019157955"
-            },
-            "contacts": [
-              {
-                "profile": {
-                  "name": "Jean"
-                },
-                "wa_id": "5511954406674"
-              }
-            ],
-            "messages": [
-              {
-                "from": "5511954406674",
-                "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABIYIDI0REVCRTI1RDU5MzE3QkM0REFEQzM1Mjk4RjJDRDkxAA==",
-                "timestamp": "1663871462",
-                "text": {
-                  "body": "Seloco"
-                },
-                "type": "text"
-              }
-            ]
+  "entry": [{
+    "id": "106267015566642",
+    "changes": [{
+      "value": {
+        "messaging_product": "whatsapp",
+        "metadata": {
+          "display_phone_number": "15550705204",
+          "phone_number_id": "103734019157955"
+        },
+        "contacts": [{
+          "profile": {
+            "name": "Jean"
           },
-          "field": "messages"
-        }
-      ]
+          "wa_id": "5511954406674"
+        }],
+        "messages": [{
+          "context": {
+            "from": "15550705204",
+            "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABEYEjJGOUJEOTY0RjlERDc5RTRERQA="
+          },
+          "from": "5511954406674",
+          "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABIYIDE2MkRGQUQ3OEExRkU2QUExNTk2MEE3MDRCNzY5OTE1AA==",
+          "timestamp": "1663788051",
+          "type": "interactive",
+          "interactive": {
+            "type": "button_reply",
+            "button_reply": {
+              "id": "1",
+              "title": "Sim"
+            }
+          }
+        }]
+      },
+      "field": "messages"
+    }]
+  }]
+}
+
+
+
+{
+  "object": "whatsapp_business_account",
+  "entry": [{
+    "id": "106267015566642",
+    "changes": [{
+      "value": {
+        "messaging_product": "whatsapp",
+        "metadata": {
+          "display_phone_number": "15550705204",
+          "phone_number_id": "103734019157955"
+        },
+        "contacts": [{
+          "profile": {
+            "name": "Jean"
+          },
+          "wa_id": "5511954406674"
+        }],
+        "messages": [{
+          "from": "5511954406674",
+          "id": "wamid.HBgNNTUxMTk1NDQwNjY3NBUCABIYIDI0REVCRTI1RDU5MzE3QkM0REFEQzM1Mjk4RjJDRDkxAA==",
+          "timestamp": "1663871462",
+          "text": {
+            "body": "Seloco"
+          },
+          "type": "text"
+        }]
+      },
+      "field": "messages"
+    }]
+  }]
+}
+
+{
+  "messaging_product": "whatsapp",
+  "recipient_type": "individual",
+  "to": "5511954406674",
+  "type": "interactive",
+  "interactive": {
+    "type": "list",
+    "header": {
+      "type": "text",
+      "text": "testando header"
+    },
+    "body": {
+      "text": "Em qual escritório será feito a devolução ?"
+    },
+    "action": {
+      "button": "button_text",
+      "sections": [{
+        "title": "Escritorios",
+        "rows": [{
+          "id": "barao",
+          "title": "Barao de Limeira - SP",
+          "description": "Al. Barão de Limeira 458 - Campos Elíseos"
+        }, {
+          "id": "fariaLima",
+          "title": "Faria Lima - SP",
+          "description": "Av. Brigadeiro Faria Lima 1384 - Jd. Paulistano"
+        }, {
+          "id": "minasGerais",
+          "title": "Belo Horizonte - MG",
+          "description": "Rua Jaceguai 208, Sala 1215 - Prado"
+        }, {
+          "id": "rioDeJaneiro",
+          "title": "Rio de Janeiro",
+          "description": " Av Treze de Maio, 23 - 2 andar - sala D"
+        }, {
+          "id": "goiania",
+          "title": "Tilix Goiania",
+          "description": "Av. Dep. Jamel Cecílio, 2690, 11º Andar"
+        }, {
+          "id": "maringa",
+          "title": "Maringa - PR",
+          "description": "Av. Bento Munhoz da Rocha Neto 632, Salas 1006-1008, 10nd - Zona 7"
+        }, {
+          "id": "portoAlegre                                                                ",
+          "title": "Porto Alegre",
+          "description": "Av. Ipiranga 6681, Prédio 96B, Sl 201 - Partenon"
+        }]
+      }]
     }
-  ]
+  }
 }
