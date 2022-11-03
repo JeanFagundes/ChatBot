@@ -7,7 +7,7 @@ module.exports = async function sendMessageButton(number) {
   // Adicionar a leitura de excel aqui
 
   const token = process.env.TOKEN;
-  const phoneid = process.env.PHONEID;
+  // const phoneid = process.env.PHONEID;
 
   console.log('Executando modulo startingChat');
 
@@ -37,7 +37,7 @@ module.exports = async function sendMessageButton(number) {
 
   const config = {
     method: 'POST',
-    url: `https://graph.facebook.com/v14.0/${phoneid}/messages?access_token=${token}`,
+    url: `https://graph.facebook.com/v14.0/103734019157955/messages?access_token=${token}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
