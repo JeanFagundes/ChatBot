@@ -9,5 +9,5 @@ router.post('/webhook', MessagesController.receiveMessage);
 // router.post('/sendAnswerWithButton', MessagesController.sendAnswerWithButton);
 
 router.get('/', MessagesController.homePage);
-router.get('/webhook', MessagesController.webhook);
+// router.get('/webhook', MessagesController.webhook);
 module.exports = router;
