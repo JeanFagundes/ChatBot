@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 const SendAnswerWithButton = require('../SendAnswerWithButton');
 
 /* eslint-disable camelcase */
@@ -24,7 +25,7 @@ module.exports = async function receiveMessage(body_param) {
     console.log(answer);
 
     if (answer === 'startingChat') {
-      const data = {
+      const data = json.stringify({
         messaging_product: 'whatsapp',
         recipient_type: 'individual',
         to: from,
@@ -40,27 +41,27 @@ module.exports = async function receiveMessage(body_param) {
                 type: 'reply',
                 reply: {
                   id: 'devolucaoEscritorio',
-                  title: 'Devolução presencial',
+                  title: 'presencial',
                 },
               },
               {
                 type: 'reply',
                 reply: {
                   id: 'devolucaoRetirada',
-                  title: 'Retirada do equipamento',
+                  title: 'Retirada',
                 },
               },
               {
                 type: 'reply',
                 reply: {
                   id: 'devolucaoRealizada',
-                  title: 'Já realizei a devolução',
+                  title: 'realizado',
                 },
               },
             ],
           },
         },
-      };
+      });
       await SendAnswerWithButton(data);
     } else if (answer === 'devolucaoEscritorio') {
       const data = {
