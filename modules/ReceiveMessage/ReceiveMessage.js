@@ -25,7 +25,7 @@ module.exports = async function receiveMessage(body_param) {
     console.log(answer);
 
     if (answer === 'startingChat') {
-      const data = json.stringify({
+      const data = JSON.stringify({
         messaging_product: 'whatsapp',
         recipient_type: 'individual',
         to: from,

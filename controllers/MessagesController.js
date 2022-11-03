@@ -42,7 +42,7 @@ module.exports = class MessagesController {
         body_param.entry[0].changes[0].value.messages[0]
       ) {
         const result = await ReceiveMessage(body_param);
-        res.send(result);
+        return res.send(result);
       }
     }
   }
