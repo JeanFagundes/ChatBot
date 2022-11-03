@@ -25,7 +25,7 @@ module.exports = async function sendMessage(data, validarPergunta) {
     console.error(e.response.data);
     console.error(e.response.status);
     console.error(e.response.headers);
-    return console.error(e);
+    return console.error(e.message);
   }
 };
 // return 'não tem parametro no corpo';
