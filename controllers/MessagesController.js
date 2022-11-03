@@ -1,6 +1,6 @@
 const sendMessage = require('../modules/SendMessage');
-const sendMessageButton = require('../modules/SendMessageWithButton');
-const ReceiveMessage = require('../modules/ReceiveMessage');
+const sendMessageButton = require('../modules/FirstMessage/startingChat');
+const ReceiveMessage = require('../modules/ReceiveMessage/ReceiveMessage');
 const webhookVerification = require('../modules/webhookVerification');
 // const sendAnswerWithButton = require('../modules/SendAnswerWithButton');
 // const receiveFirstResponse = require('../modules/responses/receiveFirstResponse');
