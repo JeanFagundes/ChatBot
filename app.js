@@ -17,7 +17,7 @@ app.use(
 
 app.use(routes);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('webhook is listening');
 });
 
