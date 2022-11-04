@@ -1,7 +1,10 @@
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+
 const SendAnswerWithButton = require('../SendAnswerWithButton');
 const SendAnswerWithText = require('../SendAnswerWithText');
 
-/* eslint-disable camelcase */
 require('dotenv').config();
 
 module.exports = async function receiveMessage(body_param) {
@@ -15,6 +18,8 @@ module.exports = async function receiveMessage(body_param) {
     const answer = body_param.entry[0].changes[0].value.messages[0].text.body;
     console.log(answer);
     console.log(message);
+
+
     return answer;
   }
   if (typeMessage === 'interactive') {
