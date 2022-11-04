@@ -44,7 +44,7 @@ module.exports = async function receiveMessage(body_param) {
         interactive: {
           type: 'button',
           body: {
-            text: 'Perfeito, vamos começar. "\n" Qual será a forma de retirada dos equipamentos ?',
+            text: 'Perfeito, vamos começar. \n Qual será a forma de retirada dos equipamentos ?',
           },
           action: {
             buttons: [
@@ -154,7 +154,7 @@ module.exports = async function receiveMessage(body_param) {
         to: from,
         type: 'text',
         text: {
-          body: `Você escolheu fazer a entrega dos equipamentos no escritório do(a) ${answer}. "\n"
+          body: `Você escolheu fazer a entrega dos equipamentos no escritório do(a) ${answer}.\n
           Que dia será feito a devolução ?`,
         },
       });

@@ -3,7 +3,7 @@ require('dotenv').config();
 
 module.exports = async function sendMessage(data, validarPergunta) {
   const token = process.env.TOKEN;
-  const phoneid = process.env.PHONEID;
+  // const phoneid = process.env.PHONEID;
 
   let config = {};
 
