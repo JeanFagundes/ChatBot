@@ -16,9 +16,9 @@ module.exports = async function receiveMessage(body_param) {
     // ainda não sei o que fazer, vamos lutando
     const message = JSON.stringify(body_param, null, 2);
     const answer = body_param.entry[0].changes[0].value.messages[0].text.body;
-    const id = body_param.entry[0].changes[0].contacts[0].wa_id;
     console.log(id);
     console.log(message);
+    const id = body_param.entry[0].changes[0].contacts[0].wa_id;
 
     const user = await prisma.presencial.findFirst({
       where: {
