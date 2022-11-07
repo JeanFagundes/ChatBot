@@ -1,0 +1,1 @@
+mysql://bd254a16d49c26:a8a82887@us-cdbr-east-06.cleardb.net/chatBot?reconnect=true

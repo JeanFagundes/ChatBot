@@ -1,5 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 
+const fs = require('fs');
+
 const prisma = new PrismaClient();
 
 const SendAnswerWithButton = require('../SendAnswerWithButton');
@@ -21,25 +23,7 @@ module.exports = async function receiveMessage(body_param) {
     const id = body_param.entry[0].changes[0].value.contacts[0].wa_id;
     console.log(id);
 
-    const user = await prisma.presencial.findUnique({
-      where: {
-        id: 1,
-      },
-    });
-
-    if (user) {
-      console.log(user.escritorio);
-      if (user.escritorio !== null) {
-        const updateUser = await prisma.presencial.update({
-          where: {
-            id: user.id,
-          },
-          data: {
-            data: answer,
-          },
-        });
-      }
-    }
+    
 
     return answer;
   }
