@@ -16,13 +16,14 @@ module.exports = async function receiveMessage(body_param) {
     // ainda não sei o que fazer, vamos lutando
     const message = JSON.stringify(body_param, null, 2);
     const answer = body_param.entry[0].changes[0].value.messages[0].text.body;
+    console.log(answer);
     console.log(message);
     const id = body_param.entry[0].changes[0].value.contacts[0].wa_id;
     console.log(id);
 
-    const user = await prisma.presencial.findFirst({
+    const user = await prisma.presencial.findUnique({
       where: {
-        phoneID: id,
+        id: 1,
       },
     });
 

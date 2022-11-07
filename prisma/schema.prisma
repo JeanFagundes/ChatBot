@@ -11,12 +11,12 @@ datasource db {
 }
 
 model Presencial {
-  id         Int     @id @default(autoincrement())
-  phoneId    String
-  user       String
-  starting   Boolean @default(false)
-  escritorio String
-  data       String
+  id         Int      @id @default(autoincrement())
+  phoneId    String?
+  user       String?
+  starting   Boolean? @default(false)
+  escritorio String?
+  data       String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
