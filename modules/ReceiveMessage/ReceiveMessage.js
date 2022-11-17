@@ -23,8 +23,6 @@ module.exports = async function receiveMessage(body_param) {
     const id = body_param.entry[0].changes[0].value.contacts[0].wa_id;
     console.log(id);
 
-    
-
     return answer;
   }
   if (typeMessage === 'interactive') {
