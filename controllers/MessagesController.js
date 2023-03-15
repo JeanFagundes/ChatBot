@@ -1,15 +1,15 @@
 const sendMessage = require('../modules/SendMessage');
 const sendMessageButton = require('../modules/FirstMessage/startingChat');
 const ReceiveMessage = require('../modules/ReceiveMessage/ReceiveMessage');
-// const webhookVerification = require('../modules/webhookVerification');
+const webhookVerification = require('../modules/webhookVerification');
 // const sendAnswerWithButton = require('../modules/SendAnswerWithButton');
 // const receiveFirstResponse = require('../modules/responses/receiveFirstResponse');
 
 module.exports = class MessagesController {
-  // static async webhook(req, res) {
-  //   const result = await webhookVerification(req);
-  //   return res.send(result);
-  // }
+  static async webhook(req, res) {
+    const result = await webhookVerification(req);
+    return res.send(result);
+  }
 
   static async sendInitialMessage(req, res) {
     // const body_param = ({} = req.body);

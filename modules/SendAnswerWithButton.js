@@ -11,7 +11,7 @@ module.exports = async function sendAnswerWithButton(data) {
 
   const config = {
     method: 'POST',
-    url: `https://graph.facebook.com/v14.0/103734019157955/messages`,
+    url: `https://graph.facebook.com/v15.0/103734019157955/messages`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
